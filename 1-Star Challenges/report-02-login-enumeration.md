@@ -8,7 +8,7 @@
 
 ## 1. Zusammenfassung (Executive Summary)
 
-Im Rahmen eines Übungspenetrationstests im OWASP Juice Shop wurde die Challenge „Zero Stars“ erfolgreich abgeschlossen. Ziel war es, das zentrale Feedback-Formular zur Website-Bewertung zu manipulieren, sodass ein Eintrag mit null Sternen akzeptiert wird. Diese Bewertung ist im regulären Webinterface nicht vorgesehen. Die Schwachstelle beruht auf fehlender serverseitiger Validierung.
+Im Rahmen dieses penetrationstests im OWASP Juice Shop wurde die Challenge „Zero Stars“ erfolgreich abgeschlossen. Ziel war es, das zentrale Feedback-Formular zur Website-Bewertung zu manipulieren, sodass ein Eintrag mit null Sternen akzeptiert wird. Diese Bewertung ist im regulären Webinterface nicht vorgesehen. Die Schwachstelle beruht auf fehlender serverseitiger Validierung.
 
 ---
 

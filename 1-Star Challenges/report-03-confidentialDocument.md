@@ -9,7 +9,7 @@
 
 ## 1. Zusammenfassung
 
-In dieser Übung wurde durch einfache URL-Manipulation ein vertrauliches Dokument in einem öffentlich zugänglichen Verzeichnis entdeckt. Das Problem liegt in der ungeschützten Bereitstellung sensibler Dateien, die nur durch „Security by Obscurity“ versteckt wurden. Die Schwachstelle zeigt, wie wichtig es ist, sensible Pfade zusätzlich durch Zugriffskontrollen abzusichern.
+In diesem Pentest wurde durch einfache URL-Manipulation ein vertrauliches Dokument in einem öffentlich zugänglichen Verzeichnis entdeckt. Das Problem liegt in der ungeschützten Bereitstellung sensibler Dateien, die nur durch „Security by Obscurity“ versteckt wurden. Die Schwachstelle zeigt, wie wichtig es ist, sensible Pfade zusätzlich durch Zugriffskontrollen abzusichern.
 
 ---
 
