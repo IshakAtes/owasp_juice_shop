@@ -10,7 +10,7 @@ service = Service(executable_path="/usr/local/bin/geckodriver")  # anpassen fall
 driver = webdriver.Firefox(service=service, options=options)
 
 # Juice Shop URL
-base_url = "http://127.0.0.1:3000"
+base_url = "http://127.0.0.1:3000/#"
 
 # Wordlist laden
 with open("dirs_wordlist.txt", "r") as file:
