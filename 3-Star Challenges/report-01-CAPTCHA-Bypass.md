@@ -1,25 +1,25 @@
-# 🛡️ Penetration Test Bericht – CAPTCHA Bypass
+# 🛡️ Penetration Test Report – CAPTCHA Bypass
 
-## 1. Ziel  
-Ziel dieses Pentests im OWASP Juice Shop war es, die CAPTCHA-Überprüfung zu umgehen und innerhalb kurzer Zeit mehrere Feedbacks automatisiert abzusenden.
+## 1. Objective
+The objective of this penetration test in OWASP Juice Shop was to bypass the CAPTCHA verification and submit multiple feedbacks automatically within a short period of time.
 
 ---
 
-## 2. Scope (Testumfang)  
-- **Zielsystem:** OWASP Juice Shop – lokal gehostet  
-- **Testmethode:** Black-Box  
-- **Testzeitraum:** 26.08.2025
+## 2. Scope
+- **Target System:** OWASP Juice Shop – locally hosted
+- **Test Methodology:** Black-Box
+- **Test Date:** 2025-08-26
 - **Tools:** Firefox DevTools, Burp Suite
 
 ---
 
-## 3. Vorgehensweise  
-1. Ein Terminal mit der Tastenkombination `Strg` + `Alt` + `T` geöffnet und Burp Suite gestartet.
-2. Im Menüpunkt Proxy die Option Open Browser ausgewählt.
-3. Zur Seite Customer Feedback im OWASP Juice Shop navigiert `http://127.0.0.1:3000/#/contact`.
-4. Einen Kommentar und ein Rating eingegeben sowie das Ergebnis des CAPTCHA gelöst, jedoch das Formular noch nicht abgesendet.
-5. Im Burp Suite-Tool `Intercept on` aktiviert und anschließend im Juice Shop das Feedback über den Button `Submit` abgeschickt.
-6. Burp Suite fing den Request ab. Schrittweise mit `Forward` navigiert, bis der `POST`-Request sichtbar war. Der Request sah beispielhaft folgendermaßen aus:
+## 3. Methodology
+1. Opened a terminal using `Ctrl` + `Alt` + `T` and started Burp Suite.
+2. In the Proxy tab, selected the option Open Browser.
+3. Navigated to the Customer Feedback page in OWASP Juice Shop: `http://127.0.0.1:3000/#/contact`.
+4. Entered a comment and rating, solved the CAPTCHA, but did not yet submit the form.
+5. Activated `Intercept on` in Burp Suite and then clicked the `Submit` button in Juice Shop.
+6. Burp Suite intercepted the request. Using `Forward`, navigated step by step until the `POST`request was visible. The request looked as follows:
 ``` bash
 POST /api/Feedbacks/ HTTP/1.1
 Host: 127.0.0.1:3000
@@ -47,48 +47,47 @@ Connection: keep-alive
     "rating":"2"
 }
 ```
-Der Request wurde anschließend mit Rechte mausklick `Send to Intruder` weitergeleitet.
+The request was then forwarded to Intruder using Right-click `Send to Intruder`.
 
-7. Im Reiter Intruder wurden die Parameter (z. B. comment oder rating) markiert und über den Button `Add §` als Variablen definiert. Anschließend wurde im Tab Payloads eine Liste mit mehreren Kommentaren bzw. Ratings manuell hinzugefügt.
+7. In the Intruder tab, parameters (e.g., comment or rating) were marked and added as variables using the `Add §` button. In the Payloads tab, a list of multiple comments/ratings was manually added.
 
-8. Nach dem Einfügen von mehr als zehn Payloads wurde der Angriff über `Start attack` gestartet. Die einzelnen Requests wurden an den Server geschickt.
+8. After adding more than ten payloads, the attack was launched with `Start attack`. The individual requests were sent to the server:
 ``` bash
-Statuscode 401 → Anfrage abgelehnt.
+Statuscode 401 → Request denied.
 
-Statuscode 201 → Anfrage erfolgreich.
+Statuscode 201 → Request successful.
 ```
-Bei erfolgreichen Anfragen wurden die Feedbacks gespeichert.
+For successful requests, the feedbacks were stored.
 
-9. Danach wurde der Proxy erneut auf `Intercept off` gesetzt, sodass alle weiteren Requests im Hintergrund verarbeitet werden konnten.
+9. The proxy was then set to `Intercept off` again so that all further requests could be processed in the background.
 
-10. Der OWASP Juice Shop bestätigte die erfolgreiche Durchführung der Challenge durch die Einblendung der Meldung:
+10. OWASP Juice Shop confirmed successful completion of the challenge with the message:
 `You successfully solved a challenge: CAPTCHA Bypass (Submit 10 or more customer feedbacks within 20 seconds.)`
 
 ---
 
-## 4. Gefundene Schwachstelle(n)
-- Fehlerhafte CAPTCHA-Prüfung:
-Das CAPTCHA wird clientseitig generiert und im Backend nicht zuverlässig validiert. Die API akzeptiert Feedback-Requests auch mit falschen oder leeren CAPTCHA-Werten. Dadurch ist ein automatisiertes Absenden mehrerer Feedbacks innerhalb kürzester Zeit möglich.
+## 4. Identified Vulnerability
+- Broken CAPTCHA Validation:
+The CAPTCHA is generated client-side and not properly validated on the backend. The API accepts feedback requests even with incorrect or empty CAPTCHA values, allowing automated submission of multiple feedbacks within seconds.
 
 ---
 
-## 5. Risikoanalyse / Auswirkung:
-- automatisiert und massenhaft Feedback (Spam) Angriff möglich.
-- die Datenbank mit falschen Bewertungen füllen und so die Reputation von Produkten oder des Shops manipulieren.
+## 5. Risk Analysis / Impact
+- Enables automated and mass feedback (spam) attacks.
+- Database can be flooded with fake ratings, manipulating the reputation of products or the shop.
 
 ---
 
-## 6. Empfehlung  
-- CAPTCHA-Prüfung serverseitig implementieren (nicht nur clientseitig).
-- Requests serverseitig validieren und ungültige Eingaben konsequent blockieren.
-- Rate Limiting und Spam-Filter einsetzen, um Missbrauch durch Bots zu verhindern.
+## 6. Recommendation
+- Implement server-side CAPTCHA validation (not only client-side).
+- Strictly validate requests on the server and block invalid inputs.
+- Use rate limiting and spam filters to prevent abuse by bots.
 
 ---
 
-## 7. Fazit  
-Die Challenge zeigt, dass CAPTCHA-Validierung ausschließlich auf Client-Seite unsicher ist.
-Ein Angreifer kann mit minimalem Aufwand das CAPTCHA umgehen und automatisierte Anfragen absenden.
-Dies unterstreicht, dass Sicherheitskontrollen unbedingt auch serverseitig angewendet werden sollten.
+## 7. Conclusion
+This challenge demonstrates that relying solely on client-side CAPTCHA validation is insecure.
+An attacker can bypass the CAPTCHA with minimal effort and send automated requests.
+It underlines the importance of always implementing security controls on the server side.
 
----
 
