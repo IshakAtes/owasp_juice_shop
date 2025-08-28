@@ -1,60 +1,60 @@
-# 🛡️ Penetration Test Bericht – [Challenge-Name]
+# OWASP Juice Shop – Educational Pentesting Project
 
-## 1. Ziel  
-Kurze Beschreibung des Ziels dieser Challenge oder Schwachstelle.  
-*z. B. Zugriff auf ein vertrauliches Dokument ohne Autorisierung.*
-
----
-
-## 2. Scope (Testumfang)  
-- **Zielsystem:** OWASP Juice Shop – lokal gehostet  
-- **Testmethode:** Black-Box  
-- **Testzeitraum:** [z. B. 28.05.2025]  
-- **Tools:** [z. B. Firefox DevTools, Burp Suite, etc.]
+## 📑 Table of Contents
+1. [Project Description](#project-description)  
+2. [Disclaimer](#disclaimer)  
+3. [Challenges](#challenges)  
+   - [SQL Injection](#1-sql-injection)  
+   - [Review Manipulation (Broken Access Control)](#2-review-manipulation-broken-access-control)  
+   - [Cross-Site Scripting (XSS)](#3-cross-site-scripting-xss)  
+4. [Loom Videos](#loom-videos)  
+5. [Security Risks](#security-risks)  
 
 ---
 
-## 3. Vorgehensweise  
-Schritt-für-Schritt-Erklärung, wie du vorgegangen bist, z. B.:
-
-1. Webseite aufgerufen  
-2. Menüpunkt „Customer Feedback“ geöffnet  
-3. Quelltext im Browser untersucht  
-4. Nach PDF-Dateien gesucht  
-5. Versteckten Link entdeckt  
-6. Datei geöffnet  
+## 📘 Project Description
+This repository documents the solutions to several hacking challenges within the **OWASP Juice Shop**.  
+The purpose of this project is **educational pentesting**: understanding common web vulnerabilities by exploiting them in a safe and legal environment.
 
 ---
 
-## 4. Gefundene Schwachstelle(n)
-Beschreibe technische Einzelheiten, z. B.:
-
-- HTML-Snippet oder Pfad zur Datei
-- Verwendete HTTP-Requests
-- Manipulation von Parametern
-- Screenshots (optional)
-- Hinweise auf fehlende Zugriffskontrolle
+## ⚠️ Disclaimer
+This repository and its content are for **educational purposes only**.  
+All demonstrated attacks were performed exclusively against the intentionally vulnerable application **OWASP Juice Shop**.  
+Do not attempt to apply these techniques on any system without explicit authorization.
 
 ---
 
-## 5. Risikoanalyse / Auswirkung:
-Was könnte ein echter Angreifer dadurch erreichen?  
-*z. B. Zugriff auf interne Dokumente mit sensiblen Informationen.*
+## 🕵️ Challenges
+
+### 1. SQL Injection
+- **Category:** Injection  
+- **Description:** Logged in as another user by bypassing authentication with a crafted SQL query.  
+- **Risk:** Allows attackers to access or modify sensitive data, compromise accounts, and potentially gain admin privileges.
+
+### 2. Review Manipulation (Broken Access Control)
+- **Category:** Broken Access Control  
+- **Description:** While logged in as Jim, manipulated another user's review (Bender) and changed its content.  
+- **Risk:** Attackers can tamper with user-generated content, undermine trust, and cause reputational damage.
+
+### 3. Cross-Site Scripting (XSS)
+- **Category:** XSS (Cross-Site Scripting)  
+- **Description:** Injected malicious JavaScript into a product review that executes in other users’ browsers.  
+- **Risk:** Can steal session tokens, hijack user accounts, perform unauthorized actions, or spread malware.
 
 ---
 
-## 6. Empfehlung  
-Wie könnte man die Schwachstelle vermeiden? Zum Beispiel:
-
-- Zugriffsbeschränkung über Authentifizierung
-- PDF-Links nicht im Quellcode verstecken
-- Richtige Berechtigungen auf Serverebene
+## 🎥 Loom Videos
+- [SQL Injection – Video Walkthrough](<your-loom-link-here>)  
+- [Review Manipulation – Video Walkthrough](<your-loom-link-here>)  
+- [Cross-Site Scripting – Video Walkthrough](<your-loom-link-here>)  
 
 ---
 
-## 7. Fazit  
-Was hast du aus der Challenge gelernt?  
-*z. B. Der Entwickler hat vermutlich „Security by Obscurity“ verwendet, was kein echter Schutz ist.*
+## 🔒 Security Risks
+The vulnerabilities exploited in these challenges represent **real-world risks**:  
+- **Injection attacks** threaten confidentiality and integrity of databases.  
+- **Broken Access Control** allows privilege escalation and unauthorized modifications.  
+- **XSS** puts end-users at risk, enabling identity theft and phishing.  
 
----
-
+Proper security testing and secure coding practices are essential to prevent such attacks.
