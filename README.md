@@ -31,23 +31,23 @@ Do not attempt to apply these techniques on any system without explicit authoriz
 - **Category:** Injection  
 - **Description:** Logged in as another user by bypassing authentication with a crafted SQL query.  
 - **Risk:** Allows attackers to access or modify sensitive data, compromise accounts, and potentially gain admin privileges.
+- **Report:** [SQL Injection – Pentest Report](reports/sql-injection.md)
+- **Video:** [SQL Injection – Video Walkthrough](<your-loom-link-here>)  
 
 ### 2. Review Manipulation (Broken Access Control)
 - **Category:** Broken Access Control  
 - **Description:** While logged in as Jim, manipulated another user's review (Bender) and changed its content.  
 - **Risk:** Attackers can tamper with user-generated content, undermine trust, and cause reputational damage.
+- **Report:** [Review Manipulation – Pentest Report](reports/review-manipulation.md)
+- **Video:** [Review Manipulation – Video Walkthrough](<your-loom-link-here>)  
 
 ### 3. Cross-Site Scripting (XSS)
 - **Category:** XSS (Cross-Site Scripting)  
 - **Description:** Injected malicious JavaScript into a product review that executes in other users’ browsers.  
 - **Risk:** Can steal session tokens, hijack user accounts, perform unauthorized actions, or spread malware.
-
----
-
-## 🎥 Loom Videos
-- [SQL Injection – Video Walkthrough](<your-loom-link-here>)  
-- [Review Manipulation – Video Walkthrough](<your-loom-link-here>)  
-- [Cross-Site Scripting – Video Walkthrough](<your-loom-link-here>)  
+- **Report:** [Cross-Site Scripting – Pentest Report](https://github.com/IshakAtes/owasp_juice_shop/blob/78a0e523f52865fd065e58721e1e589baf8cdc50/3-Star%20Challenges/report-02-ClientSide-XSS-Protection.md)
+- **Video:** [Cross-Site Scripting – Video Walkthrough](3-Star Challenges/report-02-ClientSide-XSS-Protection.md)
+  
 
 ---
 
