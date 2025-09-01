@@ -31,7 +31,7 @@ Do not attempt to apply these techniques on any system without explicit authoriz
 - **Description:** Logged in as another user by bypassing authentication with a crafted SQL query.  
 - **Risk:** Allows attackers to access or modify sensitive data, compromise accounts, and potentially gain admin privileges.
 - **Report:** [CAPTCHA Bypass – Pentest Report](https://github.com/IshakAtes/owasp_juice_shop/blob/6763e339f70e03c7b93921a9c8998b3075146951/3-Star%20Challenges/report-01-CAPTCHA-Bypass.md)
-- **Video:** [CAPTCHA Bypass – Video Walkthrough](<your-loom-link-here>)  
+- **Video:** [CAPTCHA Bypass – Video Walkthrough](https://go.screenpal.com/watch/cTQV6Anoexj)  
 
 ### 2. Review Manipulation (Broken Access Control)
 - **Category:** Broken Access Control  
