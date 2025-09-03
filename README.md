@@ -1,9 +1,9 @@
 # OWASP Juice Shop – Educational Pentesting Project
 
 ## 📑 Table of Contents
-1. [Project Description](#project-description)  
-2. [Disclaimer](#disclaimer)  
-3. [Challenges](#challenges)  
+1. [Project Description](#-project-description)  
+2. [Disclaimer](#️-disclaimer)  
+3. [Challenges](#️-challenges)  
    - [CAPTCHA Bypass](#1-captcha-bypass)  
    - [Cross-Site Scripting (XSS)](#2-cross-site-scripting-xss)  
    - [Forged Review (Broken Access Control)](#3-forged-review---review-manipulation-broken-access-control)  
