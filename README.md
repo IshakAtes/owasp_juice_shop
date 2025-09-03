@@ -44,7 +44,7 @@ Do not attempt to apply these techniques on any system without explicit authoriz
 - **Category:** Broken Access Control  
 - **Description:** While logged in as Jim, submitted a new product review but modified the `author` field so that it appeared under another user’s name.  
 - **Risk:** Attackers can impersonate other users, damage reputations, and undermine trust in the integrity of user-generated content.
-- **Report:** [Review Manipulation – Pentest Report](https://github.com/IshakAtes/owasp_juice_shop/blob/6763e339f70e03c7b93921a9c8998b3075146951/2-Star%20Challenges/report-01-Broken-Access-Control.md)
+- **Report:** [Review Manipulation – Pentest Report](https://github.com/IshakAtes/owasp_juice_shop/blob/1e67f59cb8035f66174743965cb203810c37e6f7/3-Star%20Challenges/report-03-ForgedReview.md)
 - **Video:** [Review Manipulation – Video Walkthrough](https://go.screenpal.com/watch/cTQerdnolNC)  
   
 
