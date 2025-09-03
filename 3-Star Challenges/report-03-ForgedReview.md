@@ -1,4 +1,4 @@
-# 🛡️ Penetration Test Bericht – [Challenge-Name]
+# 🛡️ Penetration Test Bericht – Forged Review
 
 ## 1. Objective
 The objective of this test was to demonstrate how a review can be submitted on behalf of another user by forging the request, thereby bypassing proper authentication and authorization mechanisms.
