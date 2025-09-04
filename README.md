@@ -35,8 +35,8 @@ Do not attempt to apply these techniques on any system without explicit authoriz
 
 ### 2. Cross-Site Scripting (XSS)
 - **Category:** XSS (Cross-Site Scripting)  
-- **Description:** Injected malicious JavaScript into a product review that executes in other users’ browsers.  
-- **Risk:** Can steal session tokens, hijack user accounts, perform unauthorized actions, or spread malware.
+- **Description:** Injected malicious JavaScript into the system that was executed when the Admin accessed the dashboard.
+- **Risk:** Can compromise administrative accounts, leading to privilege escalation, full application takeover, or injection of further malicious payloads. 
 - **Report:** [Cross-Site Scripting – Pentest Report](https://github.com/IshakAtes/owasp_juice_shop/blob/6763e339f70e03c7b93921a9c8998b3075146951/3-Star%20Challenges/report-02-ClientSide-XSS-Protection.md)
 - **Video:** [Cross-Site Scripting – Video Walkthrough](https://go.screenpal.com/watch/cTQf6Hno25D)
 
