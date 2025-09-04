@@ -1,6 +1,6 @@
 # OWASP Juice Shop – Educational Pentesting Project
 
-## 📑 Table of Contents
+## Table of Contents
 1. [Project Description](#-project-description)  
 2. [Disclaimer](#️-disclaimer)  
 3. [Challenges](#️-challenges)  
@@ -11,7 +11,7 @@
 
 ---
 
-## 📘 Project Description
+## Project Description
 This repository documents the solutions to several hacking challenges within the **OWASP Juice Shop**.  
 The purpose of this project is **educational pentesting**: understanding common web vulnerabilities by exploiting them in a safe and legal environment.
 
@@ -24,7 +24,7 @@ Do not attempt to apply these techniques on any system without explicit authoriz
 
 ---
 
-## 🕵️ Challenges
+## Challenges
 
 ### 1. CAPTCHA Bypass
 - **Category:** Improper Input Validation / Broken Anti-Automation 
@@ -50,7 +50,7 @@ Do not attempt to apply these techniques on any system without explicit authoriz
 
 ---
 
-## 🔒 Security Risks
+## Security Risks
 The vulnerabilities exploited in these challenges highlight **common real-world risks**:  
 - **Improper Input Validation / Broken Anti-Automation** can be abused to flood applications with automated requests, enabling spam or denial-of-service scenarios.  
 - **Cross-Site Scripting (XSS)** exposes end-users to identity theft, session hijacking, phishing, and malware injection.  
